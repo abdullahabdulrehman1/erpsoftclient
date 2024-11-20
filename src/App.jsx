@@ -9,6 +9,7 @@ import GRNReturnGeneral from "./pages/user/GRNReturnGeneral";
 import IssueGeneral from "./pages/user/IssueGeneral";
 import IssueReturnGeneral from "./pages/user/IssueReturnGeneral";
 import GeneralAdjustment from "./pages/user/GeneralAdjustment";
+import GRNGeneral from "./pages/user/GRNGeneral";
 const App = () => {
   return (
     <BrowserRouter future={{ v7_startTransition: true }}>
@@ -19,7 +20,7 @@ const App = () => {
         <Route path="/requisition-general" element={<RequisitionGeneral />} />
         <Route path="/po-general" element={<POGeneral />} />
         <Route path="/grn-return-general" element={<GRNReturnGeneral />} />
-        <Route path="/grn-general" element={<GRNReturnGeneral />} />
+        <Route path="/grn-general" element={<GRNGeneral />} />
         <Route path="/issue-general" element={<IssueGeneral />} />
         <Route path="/issue-return-general" element={<IssueReturnGeneral />} />
         <Route path="/general-adjustment" element={<GeneralAdjustment />} />

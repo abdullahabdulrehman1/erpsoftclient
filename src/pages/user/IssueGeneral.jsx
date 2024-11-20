@@ -3,7 +3,7 @@ import DashboardLayout from "../../components/layout/DashboradLayout";
 import AppLayout from "../../components/layout/AppLayout";
 const IssueGeneral = () => {
   return (
-    <AppLayout>
+    <AppLayout title={"Dashboard | Issue General"}>
       <DashboardLayout>
         <div className="p-4 sm:p-6 lg:p-8">
           <div className="bg-white rounded-lg shadow p-6">

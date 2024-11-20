@@ -4,8 +4,8 @@ import { useSidebar } from "../../context/SidebarContext";
 
 const Sidebar = () => {
   const menuItems = [
-    { 
-      id: 'general',
+    {
+      id: "general",
       name: "General",
       subItems: [
         { path: "/requisition-general", name: "Requisition General" },
@@ -15,16 +15,8 @@ const Sidebar = () => {
         { path: "/issue-general", name: "Issue General" },
         { path: "/issue-return-general", name: "Issue Return General" },
         { path: "/general-adjustment", name: "General Adjustment" },
-      ]
-    }
-    // { 
-    //   // id: 'reports',
-    //   // name: "Reports",
-    //   // subItems: [
-    //   //   { path: "/report-1", name: "Report 1" },
-    //   //   { path: "/report-2", name: "Report 2" },
-    //   // ]
-    // },
+      ],
+    },
     // Add more main menu items as needed
   ];
 
@@ -32,14 +24,6 @@ const Sidebar = () => {
 
   return (
     <>
-      {/* Mobile hamburger button */}
-      <button
-        onClick={toggleSidebar}
-        className="lg:hidden fixed top-4 left-3 z-50 p-2 rounded-md bg-gray-800 text-white"
-      >
-        {isSidebarOpen ? "✕" : "☰"}
-      </button>
-
       {/* Sidebar */}
       <aside
         className={`
