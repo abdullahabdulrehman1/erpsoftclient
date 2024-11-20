@@ -1,9 +1,30 @@
 import React from "react";
-
-const AppLayout = () => (WrappedComponent) => {
-  return (props) => {
-    
-  };
+import { Helmet } from "react-helmet";
+import { ToastContainer } from "react-toastify";
+import Footer from "./Footer";
+import Header from "./Header";
+import Dashboard from "../../pages/user/Dashboard";
+const AppLayout = ({ children, title, auther, description, keywords }) => {
+  
+  return (
+    <div>
+      <div className="application">
+        <Helmet>
+          <meta charSet="utf-8" />
+          <meta name="description" content={description} />
+          <meta name="keywords" content={keywords} />
+          <meta name="author" content={auther} />
+          <title>{title}</title>
+          <link rel="canonical" href="http://mysite.com/example" />
+        </Helmet>
+      </div>
+      <Header />
+      <Dashboard/>
+      <main>{children}</main>
+      <ToastContainer />
+      <Footer />
+    </div>
+  );
 };
 
 export default AppLayout;
