@@ -1,8 +1,35 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSidebar } from "../../context/SidebarContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUser,
+  faSignOutAlt,
+  faHouse,
+} from "@fortawesome/free-solid-svg-icons";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const { toggleSidebar, isSidebarOpen } = useSidebar();
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const handleDropdownToggle = () => {
+    setDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setDropdownOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <nav className="bg-white shadow w-full">
@@ -17,9 +44,11 @@ const Header = () => {
             >
               {isSidebarOpen ? "✕" : "☰"}
             </button>
-            <h1 className="hidden sm:block text-xl font-bold text-gray-800 ml-4">
-              Inventory Pro
-            </h1>
+            <Link to="/requisition-general">
+              <h1 className="hidden lg:block text-xl font-bold text-gray-800 ml-4">
+                Inventory Pro
+              </h1>
+            </Link>
           </div>
 
           {/* Center section - User Profile */}
@@ -28,8 +57,7 @@ const Header = () => {
           </div>
 
           {/* Right section */}
-          <div className="flex items-center justify-end">
-            {/* Add any right-side content here */}
+          <div className="flex items-center justify-end relative">
             <div className="flex items-center space-x-3">
               <span className="text-sm font-medium text-gray-700">
                 Abdullah
@@ -37,7 +65,58 @@ const Header = () => {
               <div className="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center">
                 <span className="text-sm font-medium text-gray-600">AB</span>
               </div>
+              <button
+                onClick={handleDropdownToggle}
+                className="focus:outline-none"
+              >
+                {!isDropdownOpen ? (
+                  <FaChevronDown className="text-lg" />
+                ) : (
+                  <FaChevronUp className="text-lg" />
+                )}
+              </button>
             </div>
+
+            {/* Dropdown Menu */}
+            {isDropdownOpen && (
+              <div
+                ref={dropdownRef}
+                className="absolute right--20 mt-44 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10"
+              >
+                <ul className="py-1">
+                  <li>
+                    <a
+                      href="/requisition-general"
+                      className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      <FontAwesomeIcon icon={faHouse} className="mr-2" />
+                      Home
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/profile"
+                      className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      <FontAwesomeIcon icon={faUser} className="mr-2" />
+                      Profile
+                    </a>
+                  </li>
+
+                  <li>
+                    <button
+                      onClick={() => {
+                        // Add your logout logic here
+                      }}
+                      className="flex items-center w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      <FontAwesomeIcon icon={faSignOutAlt} className="mr-2" />
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       </div>
