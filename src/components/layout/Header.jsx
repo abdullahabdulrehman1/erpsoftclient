@@ -8,11 +8,20 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { userNotExist } from "../../redux/reducers/auth";
 
 const Header = () => {
   const { toggleSidebar, isSidebarOpen } = useSidebar();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const dispatch = useDispatch();
   const dropdownRef = useRef(null);
+
+  const user = useSelector((state) => state.auth.user);
+
+  const handleLogout = () => {
+    dispatch(userNotExist());
+  };
 
   const handleDropdownToggle = () => {
     setDropdownOpen(!isDropdownOpen);
@@ -59,62 +68,95 @@ const Header = () => {
           {/* Right section */}
           <div className="flex items-center justify-end relative">
             <div className="flex items-center space-x-3">
-              <span className="text-sm font-medium text-gray-700">
-                Abdullah
-              </span>
-              <div className="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center">
-                <span className="text-sm font-medium text-gray-600">AB</span>
-              </div>
-              <button
-                onClick={handleDropdownToggle}
-                className="focus:outline-none"
-              >
-                {!isDropdownOpen ? (
-                  <FaChevronDown className="text-lg" />
-                ) : (
-                  <FaChevronUp className="text-lg" />
-                )}
-              </button>
+              {user ? (
+                <>
+                  <span className="text-sm font-medium text-gray-700">
+                    {/* {user.name} */}Abdullah
+                  </span>
+                  <div className="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center">
+                    <span className="text-sm font-medium text-gray-600">
+                      {/* {user.initials} */}AB
+                    </span>
+                  </div>
+                  <button
+                    onClick={handleDropdownToggle}
+                    className="focus:outline-none"
+                  >
+                    {!isDropdownOpen ? (
+                      <FaChevronDown className="text-lg" />
+                    ) : (
+                      <FaChevronUp className="text-lg" />
+                    )}
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to="/"
+                    className="text-sm font-medium text-gray-700 hover:text-gray-900 hover:underline transition duration-300"
+                  >
+                    Home
+                  </Link>
+                  <Link
+                    to="/login"
+                    className="text-sm font-medium text-gray-700 hover:text-gray-900 hover:underline transition duration-300"
+                  >
+                    Sign In
+                  </Link>
+                  <Link
+                    to="/register"
+                    className="text-sm font-medium text-gray-700 hover:text-gray-900 hover:underline transition duration-300"
+                  >
+                    Register
+                  </Link>
+                </>
+              )}
             </div>
 
             {/* Dropdown Menu */}
             {isDropdownOpen && (
               <div
                 ref={dropdownRef}
-                className="absolute right--20 mt-44 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10"
+                className="absolute right--20 mt-40 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10"
               >
-                <ul className="py-1">
-                  <li>
-                    <a
-                      href="/requisition-general"
-                      className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >
-                      <FontAwesomeIcon icon={faHouse} className="mr-2" />
-                      Home
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/profile"
-                      className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >
-                      <FontAwesomeIcon icon={faUser} className="mr-2" />
-                      Profile
-                    </a>
-                  </li>
-
-                  <li>
-                    <button
-                      onClick={() => {
-                        // Add your logout logic here
-                      }}
-                      className="flex items-center w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >
-                      <FontAwesomeIcon icon={faSignOutAlt} className="mr-2" />
-                      Logout
-                    </button>
-                  </li>
-                </ul>
+                {user ? (
+                  <ul className="py-1">
+                    <>
+                      <li>
+                        <a
+                          href="/requisition-general"
+                          className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        >
+                          <FontAwesomeIcon icon={faHouse} className="mr-2" />
+                          Home
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/profile"
+                          className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        >
+                          <FontAwesomeIcon icon={faUser} className="mr-2" />
+                          Profile
+                        </a>
+                      </li>
+                      <li>
+                        <button
+                          onClick={handleLogout}
+                          className="flex items-center w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        >
+                          <FontAwesomeIcon
+                            icon={faSignOutAlt}
+                            className="mr-2"
+                          />
+                          Logout
+                        </button>
+                      </li>
+                    </>
+                  </ul>
+                ) : (
+                  <></>
+                )}
               </div>
             )}
           </div>

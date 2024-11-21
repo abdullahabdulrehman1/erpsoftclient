@@ -139,21 +139,6 @@ const Home = () => {
         </div>
       </div>
 
-      {/* About Us Section */}
-      <div className="bg-gray-200 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-extrabold text-gray-900 text-center">
-            About Us
-          </h2>
-          <p className="mt-4 text-lg text-gray-600 text-center">
-            Inventory Pro is a leading inventory management solution designed to
-            help businesses streamline their operations and improve efficiency.
-            Our platform offers real-time tracking, automated purchase orders,
-            comprehensive reporting, and more.
-          </p>
-        </div>
-      </div>
-
       {/* Testimonials Section */}
       <div className="bg-gray-100 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -197,19 +182,33 @@ const Home = () => {
           </div>
         </div>
       </div>
+      {/* About Us Section */}
+      <div className="bg-gray-200 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-extrabold text-gray-900 text-center">
+            About Us
+          </h2>
+          <p className="mt-4 text-lg text-gray-600 text-center">
+            Inventory Pro is a leading inventory management solution designed to
+            help businesses streamline their operations and improve efficiency.
+            Our platform offers real-time tracking, automated purchase orders,
+            comprehensive reporting, and more.
+          </p>
+        </div>
+      </div>
 
       {/* Call to Action Section */}
-      <div className="bg-blue-600 py-12">
+      <div className="bg-green-600 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-extrabold text-white">
+          <h2 className="text-3xl font-extrabold text-green">
             Ready to get started?
           </h2>
-          <p className="mt-4 text-lg text-blue-200">
+          <p className="mt-4 text-lg text-green-200">
             Sign up today and take control of your inventory management.
           </p>
           <Link
             to="/signup"
-            className="mt-8 inline-block px-6 py-3 bg-white text-blue-600 font-semibold rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white"
+            className="mt-8 inline-block px-6 py-3 bg-white text-green-600 font-semibold rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white"
           >
             Get Started
           </Link>

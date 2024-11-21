@@ -22,20 +22,23 @@ const Login = () => {
   return (
     <AppLayout>
       <Header />
-      <div className="min-h-screen flex flex-col justify-center py-8 sm:px-6 lg:px-8">
+      <div
+        className="min-h-screen flex flex-col justify-center py-8 sm:px-6 lg:px-8 bg-cover bg-center"
+        style={{ backgroundImage: "url('/registration.jpg')" }}
+      >
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <h2 className="mt-4 text-center text-2xl font-extrabold text-gray-800">
+          <h2 className="mt-4 text-center text-2xl font-extrabold text-white">
             Sign in to your account
           </h2>
         </div>
 
         <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-md">
-          <div className="bg-cream py-6 px-4 shadow-xl sm:rounded-lg sm:px-6 border border-gray-300">
+          <div className="bg-cream py-6 bg-white px-4 shadow-xl sm:rounded-lg sm:px-6 border border-gray-300">
             <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-extrabold text-gray-700 "
                 >
                   Email address
                 </label>
@@ -56,7 +59,7 @@ const Login = () => {
               <div>
                 <label
                   htmlFor="password"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-extrabold text-gray-700"
                 >
                   Password
                 </label>
@@ -77,18 +80,18 @@ const Login = () => {
               <div>
                 <button
                   type="submit"
-                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-extrabold text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                   Sign In
                 </button>
               </div>
             </form>
             <div className="mt-4 text-center">
-              <p className="text-sm text-black-600">
+              <p className="text-sm font-extrabold text-gray-700">
                 Don't have an account?{" "}
                 <a
                   href="/register"
-                  className="font-medium text-gray-600 hover:text-gray-500"
+                  className="font-extrabold font-sans text-green-600 hover:text-green-500"
                 >
                   Register
                 </a>
